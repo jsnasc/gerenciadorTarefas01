@@ -1,0 +1,39 @@
+﻿<Window x:Class="dataBinding2ways.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dataBinding2ways"
+        mc:Ignorable="d"
+        Title="Controle de Tarefas" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <DataGrid Grid.Row="0" Name="dgTarefas" HorizontalAlignment="Left" AutoGenerateColumns="False" FontSize="14" Width="715" Margin="26,10,0,101" IsManipulationEnabled="True" RowDetailsVisibilityMode="Visible" CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="2*"/>
+                <!--DataGridCheckBoxColumn Binding="{Binding Feito}" Header="Feito" x:Name="stsFeito" IsThreeState="True" Width="45" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>-->
+
+                <DataGridTemplateColumn Width="235" Header="Status">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Feito"/>
+                                <RadioButton Margin="2,2,0,0" x:Name="Feito" HorizontalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding Feito}" Checked="checkFeito"></RadioButton>
+                                <Label Content="Fazendo"/>
+                                <RadioButton Margin="5,2,0,0" x:Name="Fazendo" HorizontalAlignment="Center" VerticalContentAlignment="Center"  IsChecked="{Binding Fazendo}" Checked="checkFazendo"></RadioButton>
+                                <Label Content="Pendente"/>
+                                <RadioButton Margin="5,2,0,0" x:Name="Pendente" HorizontalAlignment="Center" VerticalContentAlignment="Center"  IsChecked="{Binding Pendente}" Checked="checkPendente"></RadioButton>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="Insercao" Margin="27,310,614,22" Click="Insercao_Click">Insere</Button>
+        <TextBox x:Name="entrada" FontSize="15" Text="" Margin="188,330,188,36"></TextBox>
+        <Button x:Name="exclui" Margin="614,310,27,22" Click="exclui_Click">Exclui</Button>
+    </Grid>
+</Window>
